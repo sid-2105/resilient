@@ -137,9 +137,9 @@ export default function Header() {
                     )}
                   </div>
                 ))}
-                <button className="bg-gradient-to-r from-blue-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
+                <a href='/contact-detail' className="bg-gradient-to-r from-blue-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
                   Get Started
-                </button>
+                </a>
               </div>
             </div>
 
@@ -198,9 +198,9 @@ export default function Header() {
                   )}
                 </div>
               ))}
-              <button className="w-full text-left bg-gradient-to-r from-blue-600 to-pink-600 text-white px-3 py-2 rounded-lg hover:from-blue-700 hover:to-pink-700 transition-all duration-200 mt-2 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
+              <a href="/contact-detail" className="w-full text-left bg-gradient-to-r from-blue-600 to-pink-600 text-white px-3 py-2 rounded-lg hover:from-blue-700 hover:to-pink-700 transition-all duration-200 mt-2 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
                 Get Started
-              </button>
+              </a>
             </div>
           </div>
         )}

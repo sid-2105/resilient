@@ -39,7 +39,8 @@ const TeamPage = () => {
   return (
     <Layout>
       <main className="bg-[#0a0a0a] py-20 text-white">
-        <div className="max-w-7xl mx-auto text-center mb-20">
+        <div className='px-4 sm:px-4 lg:px-32 xl:px-40'>
+        <div className="max-w-7xl mx-auto text-center mb-20 ">
           <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] drop-shadow-[0_0_10px_rgba(0,196,255,0.5)]">
             Meet Our Team
           </h1>
@@ -52,9 +53,10 @@ const TeamPage = () => {
           <img
             src="/images/fullteam.jpg"
             alt="Our Team"
-            className="rounded-2xl shadow-[0_0_30px_rgba(0,196,255,0.4)]"
+            className="w-full h-full rounded-2xl shadow-[0_0_30px_rgba(0,196,255,0.4)] "
           />
           <div className="absolute inset-0 rounded-2xl border-4 border-[#00C4FF]/40 pointer-events-none" />
+        </div>
         </div>
 
         <HeroBanner
@@ -64,7 +66,7 @@ const TeamPage = () => {
           onButtonClick={() => window.location.href = "/career"}
         />
 
-        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 px-8 max-w-8xl mx-auto">
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 px-4 max-w-8xl mx-auto py-16">
           {teamMembers.map((member, index) => (
             <div
               key={index}
