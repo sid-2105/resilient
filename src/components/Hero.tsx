@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Code, Server, Clock, Award, Phone, MapPin } from "lucide-react";
+
+interface Slide {
+  id: number;
+  bgImage: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  stats: { projects: string; years: string; satisfaction: string };
+}
 
 const HeroSlider: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
-
-  interface Slide {
-    id: number;
-    bgImage: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    stats: { projects: string; years: string; satisfaction: string };
-  }
 
   const slides: Slide[] = [
     {
@@ -64,16 +64,16 @@ const HeroSlider: React.FC = () => {
     return () => clearInterval(timer);
   }, [handleSlideChange, slides.length]);
 
-  const nextSlide = () => handleSlideChange((currentSlide + 1) % slides.length);
-  const prevSlide = () => handleSlideChange((currentSlide - 1 + slides.length) % slides.length);
+  const nextSlide = () => handleSlideChange((prev: number) => (prev + 1) % slides.length);
+  const prevSlide = () => handleSlideChange((prev: number) => (prev - 1 + slides.length) % slides.length);
   const goToSlide = (index: number) => handleSlideChange(index);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gray-950 font-orbitron">
+    <section className="relative min-h-screen overflow-hidden bg-gray-900 font-sans">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-15">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-pink-500/30 to-gray-950/50"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%23FF00D4 fill-opacity=0.15%3E%3Cpath d=M30 30c0-16.569 13.431-30 30-30v60c-16.569 0-30-13.431-30-30z/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-gray-900/50"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%2300A3E0 fill-opacity=0.15%3E%3Cpath d=M30 30c0-16.569 13.431-30 30-30v60c-16.569 0-30-13.431-30-30z/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
 
       {/* Slide Images */}
@@ -86,66 +86,65 @@ const HeroSlider: React.FC = () => {
             }`}
           >
             <img src={slide.bgImage} alt={slide.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-950/95 via-blue-900/80 to-pink-900/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-transparent to-blue-500/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-blue-900/70 to-gray-900/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-blue-600/20"></div>
           </div>
         ))}
       </div>
 
       {/* Navigation Buttons */}
-      <div className="absolute top-1/2 -translate-y-1/2 w-full z-20 flex justify-between px-4">
+      <div className="absolute top-1/2 -translate-y-1/2 w-full z-20 flex justify-between px-4 sm:px-8">
         <button
           onClick={prevSlide}
-          className="bg-gray-900/60 hover:bg-gray-900/80 text-blue-400 p-4 rounded-full backdrop-blur-md border border-blue-500/30 hover:border-blue-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-[0_0_8px_#00C4FF]"
+          className="bg-gray-800/70 hover:bg-gray-800/90 text-blue-400 p-3 sm:p-4 rounded-full border border-blue-500/30 hover:border-blue-500 transition-all duration-300 hover:scale-105"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
-
         <button
           onClick={nextSlide}
-          className="bg-gray-900/60 hover:bg-gray-900/80 text-blue-400 p-4 rounded-full backdrop-blur-md border border-blue-500/30 hover:border-blue-500 transition-all duration-300 hover:scale-105 shadow-sm hover:shadow-[0_0_8px_#00C4FF]"
+          className="bg-gray-800/70 hover:bg-gray-800/90 text-blue-400 p-3 sm:p-4 rounded-full border border-blue-500/30 hover:border-blue-500 transition-all duration-300 hover:scale-105"
           aria-label="Next slide"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
 
       {/* Content Section */}
       <div className="relative z-10 flex items-center min-h-screen">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left */}
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-pink-900/30 text-pink-400 rounded-full border border-pink-500/40 backdrop-blur-sm shadow-[0_0_5px_#FF00D4]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-6 sm:space-y-8">
+              <div className="inline-flex items-center px-3 py-1.5 bg-blue-900/30 text-blue-400 rounded-full border border-blue-500/40">
                 <Award className="w-4 h-4 mr-2" />
                 <span className="text-sm font-medium">Award-Winning IT Solutions</span>
               </div>
 
               <h1
-                className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight transition-all duration-[800ms] ${
-                  isTransitioning ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight transition-all duration-[800ms] ${
+                  isTransitioning ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"
                 }`}
               >
-                <span className="bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent text-shadow-[0_0_3px_#00C4FF]">
+                <span className="bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">
                   {slides[currentSlide].title.split(" ").slice(0, 2).join(" ")}
                 </span>
-                <span className="block text-white mt-2 text-shadow-[0_0_3px_#FF00D4]">
+                <span className="block text-white mt-1 sm:mt-2">
                   {slides[currentSlide].title.split(" ").slice(2).join(" ")}
                 </span>
               </h1>
 
               <h2
-                className={`text-xl md:text-2xl text-pink-400 font-medium transition-all duration-[800ms] delay-200 ${
-                  isTransitioning ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
-                } text-shadow-[0_0_3px_#FF00D4]`}
+                className={`text-lg sm:text-xl text-blue-300 font-medium transition-all duration-[800ms] delay-200 ${
+                  isTransitioning ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"
+                }`}
               >
                 {slides[currentSlide].subtitle}
               </h2>
 
               <p
-                className={`text-lg text-gray-300 leading-relaxed transition-all duration-[800ms] delay-300 ${
-                  isTransitioning ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                className={`text-base sm:text-lg text-gray-300 leading-relaxed transition-all duration-[800ms] delay-300 ${
+                  isTransitioning ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"
                 }`}
               >
                 {slides[currentSlide].description}
@@ -153,26 +152,25 @@ const HeroSlider: React.FC = () => {
 
               <div
                 className={`flex flex-col sm:flex-row gap-4 transition-all duration-[800ms] delay-400 ${
-                  isTransitioning ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                  isTransitioning ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"
                 }`}
               >
-                <button className="relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
+                <button className="relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-105">
                   <span className="relative z-10 flex items-center justify-center">
-                    <Phone className="w-5 h-5 mr-2" /> Get a Free Quote
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 mr-2" /> Get a Quote
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </button>
-                <button className="border-2 border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-[0_0_5px_#FF00D4] hover:shadow-[0_0_8px_#FF00D4]">
+                <button className="border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-105">
                   <span className="flex items-center justify-center">
-                    <MapPin className="w-5 h-5 mr-2" /> Our Services
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2" /> Our Services
                   </span>
                 </button>
               </div>
 
               {/* Stats */}
               <div
-                className={`grid grid-cols-3 gap-6 pt-8 border-t border-pink-500/20 transition-all duration-[800ms] delay-500 ${
-                  isTransitioning ? "opacity-0 translate-y-8" : "opacity-100 translate-y-0"
+                className={`grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-blue-500/20 transition-all duration-[800ms] delay-500 ${
+                  isTransitioning ? "opacity-0 translate-y-6" : "opacity-100 translate-y-0"
                 }`}
               >
                 {[
@@ -181,8 +179,8 @@ const HeroSlider: React.FC = () => {
                   { label: "Client Satisfaction", value: slides[currentSlide].stats.satisfaction },
                 ].map((stat, i) => (
                   <div key={i} className="text-center">
-                    <div className="text-3xl font-bold text-blue-400 text-shadow-[0_0_3px_#00C4FF]">{stat.value}</div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
+                    <div className="text-2xl sm:text-3xl font-semibold text-blue-400">{stat.value}</div>
+                    <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -191,36 +189,36 @@ const HeroSlider: React.FC = () => {
             {/* Features */}
             <div
               className={`space-y-6 transition-all duration-[800ms] delay-600 ${
-                isTransitioning ? "opacity-0 translate-x-8" : "opacity-100 translate-x-0"
+                isTransitioning ? "opacity-0 translate-x-6" : "opacity-100 translate-x-0"
               }`}
             >
               {[
                 {
-                  icon: <Code className="w-8 h-8 text-blue-400" />,
+                  icon: <Code className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />,
                   title: "Custom Software Development",
                   desc: "Tailored software solutions to meet your unique business needs",
                 },
                 {
-                  icon: <Server className="w-8 h-8 text-blue-400" />,
+                  icon: <Server className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />,
                   title: "Cloud Infrastructure",
                   desc: "Scalable and secure cloud solutions for optimal performance",
                 },
                 {
-                  icon: <Clock className="w-8 h-8 text-blue-400" />,
+                  icon: <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400" />,
                   title: "24/7 Support",
                   desc: "Dedicated support for your IT systems around the clock",
                 },
               ].map((feature, i) => (
                 <div
                   key={i}
-                  className="group bg-gray-900/60 hover:bg-gray-900/80 backdrop-blur-md rounded-xl p-6 border border-blue-500/30 hover:border-blue-500 transition-all duration-300 hover:-translate-y-1 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]"
+                  className="group bg-gray-800/60 hover:bg-gray-800/80 rounded-xl p-4 sm:p-6 border border-blue-500/30 hover:border-blue-500 transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="bg-blue-900/30 p-3 rounded-lg group-hover:bg-blue-900/50 shadow-[0_0_3px_#00C4FF]">
+                    <div className="bg-blue-900/30 p-2 sm:p-3 rounded-lg group-hover:bg-blue-900/50">
                       {feature.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-white text-shadow-[0_0_3px_#00C4FF]">{feature.title}</h3>
+                      <h3 className="text-base sm:text-lg font-semibold text-white">{feature.title}</h3>
                       <p className="text-gray-400 text-sm">{feature.desc}</p>
                     </div>
                   </div>
@@ -232,21 +230,21 @@ const HeroSlider: React.FC = () => {
       </div>
 
       {/* Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-        <div className="flex items-center space-x-4 bg-gray-900/60 backdrop-blur-md rounded-full px-6 py-3 border border-blue-500/30 shadow-[0_0_5px_#00C4FF]">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <div className="flex items-center space-x-4 bg-gray-800/60 rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-blue-500/30">
           {slides.map((_, index: number) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
               className={`relative overflow-hidden transition-all duration-500 ${
                 index === currentSlide
-                  ? "w-12 h-3 bg-blue-400 rounded-full shadow-[0_0_5px_#00C4FF]"
-                  : "w-3 h-3 bg-blue-400/50 hover:bg-blue-400/80 rounded-full"
+                  ? "w-10 sm:w-12 h-2 sm:h-3 bg-blue-400 rounded-full"
+                  : "w-2 sm:w-3 h-2 sm:h-3 bg-blue-400/50 hover:bg-blue-400/80 rounded-full"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             >
               {index === currentSlide && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-pink-500 rounded-full animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-300 rounded-full animate-pulse"></div>
               )}
             </button>
           ))}

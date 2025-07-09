@@ -94,7 +94,8 @@ const TechnologiesSection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[auto] py-24 overflow-hidden bg-black">
+    <section className="relative min-h-[auto] py-24 overflow-hidden bg-gray-900 ">
+      
       {/* Background Video */}
       <div className="w-screen h-full z-[1] overflow-hidden absolute inset-0">
         <video

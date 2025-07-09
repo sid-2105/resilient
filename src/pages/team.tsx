@@ -38,68 +38,63 @@ const teamMembers = [
 const TeamPage = () => {
   return (
     <Layout>
-      <main className="bg-[#0a0a0a] py-20 text-white">
-        <div className='px-4 sm:px-4 lg:px-32 xl:px-40'>
-        <div className="max-w-7xl mx-auto text-center mb-20 ">
-          <h1 className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] drop-shadow-[0_0_10px_rgba(0,196,255,0.5)]">
-            Meet Our Team
-          </h1>
-          <p className="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
-            Resilient IT Services is powered by a team of innovators, engineers, and designers passionate about building low-code solutions that drive impact.
-          </p>
-        </div>
+    <main className="bg-white py-20 text-[#1a103d]">
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h1 className="text-4xl font-bold">Meet Our Team</h1>
+        <p className="mt-4 text-gray-600">
+          Resilient IT Services is powered by a team of innovators, engineers, and designers passionate about building low-code solutions that drive impact.
+        </p>
+      </div>
 
-        <div className="relative max-w-7xl mx-auto mb-16">
-          <img
-            src="/images/fullteam.jpg"
-            alt="Our Team"
-            className="w-full h-full rounded-2xl shadow-[0_0_30px_rgba(0,196,255,0.4)] "
-          />
-          <div className="absolute inset-0 rounded-2xl border-4 border-[#00C4FF]/40 pointer-events-none" />
-        </div>
-        </div>
+      <Image
+        src="/images/fullteam.jpg"
+        alt="Our Team"
+        width={1200}
+        height={600}
+        className="rounded-2xl shadow-lg mb-12 mx-auto"
+      />
 
-        <HeroBanner
+           <HeroBanner 
           backgroundImage="/images/team.jpg"
           title="Want to be part of our team?"
           buttonText="Explore Careers"
           onButtonClick={() => window.location.href = "/career"}
         />
 
-        <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12 px-4 max-w-8xl mx-auto py-16">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="bg-[#1a1a1a]  rounded-xl shadow-md hover:shadow-[0_0_20px_rgba(0,196,255,0.4)] p-8 text-center transition"
-            >
-              <div className=" w-64 h-64 mx-auto mb-6 relative">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#00C4FF]/30 to-[#FF00D4]/30 rounded-br-[120px] translate-x-4 translate-y-4 z-0 shadow-[0_0_15px_rgba(255,0,212,0.3)]" />
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  layout="fill"
-                  className="relative z-10 w-full h-full object-cover bg-[#0a0a0a] rounded-br-[120px] border-2 border-[#00C4FF]/50"
-                />
-              </div>
-              <h3 className="font-semibold text-xl bg-clip-text text-transparent bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] drop-shadow-[0_0_5px_rgba(0,196,255,0.3)]">
-                {member.name}
-              </h3>
-              <p className="text-sm text-[#00C4FF] font-medium mt-2">{member.role}</p>
-              <p className="text-gray-300 text-sm mt-4 leading-relaxed">{member.bio}</p>
-              {member.linkedin && (
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 text-sm text-[#00C4FF] hover:text-[#FF00D4] hover:underline transition"
-                >
-                  <LinkedinIcon className="inline-block mr-1 w-5 h-5" />
-                </a>
-              )}
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-10 max-w-6xl mx-auto">
+        {teamMembers.map((member, index) => (
+          <div
+            key={index}
+            className="bg-[#f9fafb] rounded-xl shadow-md hover:shadow-lg p-6 text-center transition"
+          >
+            <div className="w-64 h-64 mx-auto mb-4 relative">
+                {/* <div className="absolute top-2 left-2 w-full h-full bg-gray-400 rounded-br-[999px] z-0" /> */}
+                 <div className="absolute top-0 left-0 w-full h-full bg-purple-700  rounded-br-[120px]  translate-x-3 translate-y-3  z-0" />
+              <Image
+                src={member.image}
+                alt={member.name}
+                layout="fill"
+                //  className="relative z-10 w-full h-full object-cover rounded-br-[999px] overflow-hidden"
+                    className="relative z-10 w-full h-full object-cover bg-white rounded-br-[120px] "
+              />
             </div>
-          ))}
-        </div>
-      </main>
+            <h3 className="font-semibold text-lg">{member.name}</h3>
+            <p className="text-sm text-blue-600 font-medium">{member.role}</p>
+            <p className="text-gray-600 text-sm mt-2">{member.bio}</p>
+            {member.linkedin && (
+              <a
+                href={member.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-3 text-sm text-[#1E90FF] hover:underline"
+              >
+                <LinkedinIcon className="inline-block mr-1" />
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </main>
     </Layout>
   );
 };

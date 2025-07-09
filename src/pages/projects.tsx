@@ -51,72 +51,60 @@ const ProjectsPage = () => {
 
   return (
     <Layout>
-      <HeroHeader 
-        heading="Our Projects" 
-      />
-      <ClientMarquee />
-      <main className="bg-[#0a0a0a] py-20 px-6">
-        <div className="max-w-7xl mx-auto text-center mb-20">
-          <p className="mt-6 text-lg text-gray-300 max-w-3xl mx-auto">
-            Explore how Resilient IT Services delivers impact using low-code solutions across industries.
-          </p>
-        </div>
+    <HeroHeader heading="Our Projects" />
+    <ClientMarquee/>
+    <main className="bg-[#f9fafb] py-20 px-6">
+      <div className="max-w-7xl mx-auto text-center mb-12">
+        <p className="mt-4 text-gray-600 text-3xl max-w-xl mx-auto">
+          Explore how Resilient IT Services delivers impact using low-code solutions across industries.
+        </p>
+      </div>
 
-        <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-12 max-w-6xl mx-auto">
-          {paginatedProjects.map((project, index) => (
-            <div 
-              key={index} 
-              className="bg-[#1a1a1a] shadow-md rounded-xl overflow-hidden hover:shadow-[0_0_20px_rgba(0,196,255,0.4)] transition"
-            >
-              <div className="h-52 w-full relative">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-xl border-b-2 border-[#00C4FF]/50"
-                />
-                <div className="absolute inset-0 rounded-t-xl border-2 border-[#00C4FF]/40 pointer-events-none" />
-              </div>
-              <div className="p-8 text-left">
-                <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] drop-shadow-[0_0_5px_rgba(0,196,255,0.3)]">
-                  {project.title}
-                </h3>
-                <p className="mt-4 text-gray-300 text-sm leading-relaxed">{project.description}</p>
-              </div>
+      <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-8 max-w-6xl mx-auto">
+        {paginatedProjects.map((project, index) => (
+          <div key={index} className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-xl transition">
+            <div className="h-52 w-full relative">
+              <Image
+                src={project.image}
+                alt={project.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-xl"
+              />
             </div>
-          ))}
-        </div>
+            <div className="p-6 text-left">
+              <h3 className="text-lg font-semibold text-blue-600">{project.title}</h3>
+              <p className="mt-2 text-gray-600 text-sm">{project.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        {/* Pagination Controls */}
-        <div className="flex justify-center items-center mt-16 gap-6">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className={`px-6 py-3 rounded-full font-semibold text-lg transition-colors ${
-              currentPage === 1
-                ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] text-white hover:from-[#00a4dd] hover:to-[#dd00b8] shadow-[0_0_15px_rgba(0,196,255,0.5)]'
-            }`}
-          >
-            ← Prev
-          </button>
-          <span className="text-lg font-semibold text-gray-300 bg-clip-text bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] drop-shadow-[0_0_5px_rgba(0,196,255,0.3)]">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className={`px-6 py-3 rounded-full font-semibold text-lg transition-colors ${
-              currentPage === totalPages
-                ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] text-white hover:from-[#00a4dd] hover:to-[#dd00b8] shadow-[0_0_15px_rgba(0,196,255,0.5)]'
-            }`}
-          >
-            Next →
-          </button>
-        </div>
-      </main>
+      {/* Pagination Controls */}
+      <div className="flex justify-center items-center mt-12 gap-4">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className={`px-4 py-2 rounded-full font-medium transition ${
+            currentPage === 1 ? 'bg-gray-300 text-white' : 'bg-[#1E90FF] text-white hover:bg-blue-700'
+          }`}
+        >
+          &larr; Prev
+        </button>
+        <span className="text-lg font-semibold text-gray-700">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          className={`px-4 py-2 rounded-full font-medium transition ${
+            currentPage === totalPages ? 'bg-gray-300 text-white' : 'bg-[#1E90FF] text-white hover:bg-blue-700'
+          }`}
+        >
+          Next &rarr;
+        </button>
+      </div>
+    </main>
     </Layout>
   );
 };

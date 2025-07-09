@@ -113,14 +113,20 @@ const AboutSection: React.FC = () => {
     },
     hover: {
       scale: 1.03,
-      boxShadow: '0px 0px 12px rgba(0, 196, 255, 0.3)',
+      boxShadow: '0px 0px 12px rgba(0, 163, 224, 0.3)',
       transition: { duration: 0.2 },
     },
   };
 
   return (
-    <section className="relative py-24 overflow-hidden bg-gray-950 font-orbitron" id="about">
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+    <section className="relative py-12 sm:py-16 bg-gray-900 font-sans" id="about">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-gray-900/50"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%2300A3E0 fill-opacity=0.15%3E%3Cpath d=M30 30c0-16.569 13.431-30 30-30v60c-16.569 0-30-13.431-30-30z/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Text */}
           <div
@@ -129,7 +135,7 @@ const AboutSection: React.FC = () => {
             onMouseLeave={() => setIsPaused(false)}
           >
             <div className="min-h-[12rem] flex flex-col justify-center gap-6" aria-live="polite">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-100 leading-tight text-shadow-[0_0_3px_#FF00D4]">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-100 leading-tight">
                 We{' '}
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -138,7 +144,7 @@ const AboutSection: React.FC = () => {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="inline-block bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent text-shadow-[0_0_3px_#00C4FF]"
+                    className="inline-block bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent"
                   >
                     {phrases[index].headline}
                   </motion.span>
@@ -151,7 +157,7 @@ const AboutSection: React.FC = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="text-lg text-gray-300 max-w-lg mx-auto lg:mx-0 text-shadow-[0_0_3px_#FF00D4]"
+                  className="text-base sm:text-lg text-gray-300 max-w-lg mx-auto lg:mx-0"
                 >
                   {phrases[index].subheading}
                 </motion.p>
@@ -181,7 +187,7 @@ const AboutSection: React.FC = () => {
               initial="hidden"
               animate="visible"
               whileHover="hover"
-              className="group inline-flex items-center mt-8 px-8 py-3 bg-gradient-to-r from-blue-600 to-pink-600 rounded-full font-semibold text-white text-base transition-all duration-300 hover:shadow-[0_0_8px_#00C4FF] focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="group inline-flex items-center mt-8 px-6 py-2 bg-blue-600 rounded-md font-semibold text-white text-sm transition-all duration-300 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
               aria-label="Learn more about our services"
             >
               Let’s Build Smarter
@@ -201,9 +207,9 @@ const AboutSection: React.FC = () => {
               <img
                 src="/about.png"
                 alt="Futuristic technology illustration"
-                className="w-full h-auto object-cover transition-transform duration-300 hover:scale-103"
+                className="w-full h-auto object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/50 to-transparent opacity-30 transition-opacity duration-300 hover:opacity-20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-30" />
             </motion.div>
           </div>
         </div>

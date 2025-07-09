@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import HeroHeader from "@/components/Heroheader";
 import Layout from "@/components/Layout";
+import { i } from "framer-motion/client";
 import Image from "next/image";
 
 const industries = [
@@ -27,7 +28,7 @@ const industries = [
     id: "logistics",
   },
   {
-    title: "Retail & E-commerce",
+    title: "Retail & E-Commerce",
     description:
       "Retail and e-commerce companies require agile platforms for inventory, order management, and customer engagement. Low-code platforms enable rapid deployment of tailored customer experiences and backend optimizations.",
     image: "/images/retail.jpg",
@@ -53,44 +54,45 @@ export default function IndustriesPage() {
   return (
     <Layout>
       <HeroHeader heading="Industries We Serve" />
-      <div className="bg-gray-950">
-        {industries.map((item, index) => {
-          const isEven = index % 2 === 0;
+    <div className="bg-[#eaf2fb]">
+      {industries.map((item, index) => {
+        const isEven = index % 2 === 0;
 
-          return (
-            <section
-              key={index}
-              className={`flex flex-col-reverse md:flex-row ${
-                !isEven ? "md:flex-row-reverse" : ""
-              } items-center justify-between gap-8 py-12 px-6 md:px-20 bg-gray-950`}
-              id={item.id}
-            >
-              <div className="flex flex-col justify-center items-start gap-4 w-full md:w-1/2 lg:w-3/5 xl:w-2/3 2xl:w-1/2 text-left">
-                <h2 className="text-blue-400 text-4xl font-bold mb-6 text-shadow-[0_0_3px_#00C4FF]">
-                  {item.title}
-                </h2>
-                <p className="text-gray-300 leading-relaxed text-lg text-shadow-[0_0_3px_#FF00D4]">
-                  {item.description}
-                </p>
-                <a href="/contact-detail" className="mt-6 bg-gradient-to-r from-blue-600 to-pink-600 text-white px-6 py-3 rounded-full shadow hover:shadow-[0_0_8px_#00C4FF] hover:bg-blue-700 transition">
-                  Consult an expert
-                </a>
-              </div>
+        return (
+          <section
+            key={index}
+            className={`flex flex-col-reverse md:flex-row ${
+              !isEven ? "md:flex-row-reverse" : ""
+            } items-center justify-between gap-8 py-12 px-6 md:px-20`}
+            id={item.id}
+          >
+            <div className="flex flex-col justify-center items-start gap-4 w-full md:w-1/2 lg:w-3/5 xl:w-2/3 2xl:w-1/2 text-left">
+              <h2 className="text-purple-600 text-4xl font-bold mb-6">
+                {item.title}
+              </h2>
+              <p className="text-gray-700 leading-relaxed text-lg">
+                {item.description}
+              </p>
+              <a href="/contact-detail" className="mt-6 bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
+                Consult an expert
+              </a>
+            </div>
 
-              <div className="md:w-1/2 relative w-full aspect-[3/2]">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-xl border-t-4 border-l-4 border-pink-500 hover:drop-shadow-[0_0_8px_#FF00D4]"
-                  style={{ borderRadius: '0 50% 0 50%' }}
-                />
-              </div>
-            </section>
-          );
-        })}
-      </div>
+            <div className="md:w-1/2 relative w-full aspect-[3/2]">
+            
+              <Image
+                src={item.image}
+                alt={item.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-xl border-t-4 border-l-4 border-purple-500 "
+                style={{ borderRadius: '0 50% 0 50%' }}
+              />
+            </div>
+          </section>
+        );
+      })}
+    </div>
     </Layout>
   );
 }

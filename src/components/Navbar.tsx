@@ -68,21 +68,21 @@ export default function Header() {
   ];
 
   return (
-    <div className="bg-gray-950 relative overflow-hidden font-orbitron">
+    <div className="bg-gray-900 relative overflow-hidden font-sans">
       {/* Navigation */}
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
-          scrolled ? "bg-gray-950/90 backdrop-blur-lg border-b border-blue-500/30" : "bg-transparent"
+          scrolled ? "bg-gray-900/90 backdrop-blur-lg border-b border-blue-500/30" : "bg-transparent"
         }`}
       >
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <a href="/" className="flex items-center space-x-3">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg hover:shadow-[0_0_8px_#00C4FF] transition-all duration-300">
+              <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg hover:shadow-[0_0_8px_#00A3E0] transition-all duration-300">
                 <img src="/mlogo.png" alt="Resilient Logo" className="w-8 h-10" />
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-pink-500 bg-clip-text text-transparent text-shadow-[0_0_3px_#00C4FF]">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">
                 Resilient IT Services
               </h1>
             </div>
@@ -100,7 +100,7 @@ export default function Header() {
                       >
                         <a
                           href={item.href}
-                          className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200 py-2 text-shadow-[0_0_3px_#FF00D4]"
+                          className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors duration-200"
                         >
                           <span>{item.name}</span>
                           <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" />
@@ -108,7 +108,7 @@ export default function Header() {
 
                         {/* Dropdown Menu */}
                         <div
-                          className={`absolute top-full left-0 mt-1 w-56 bg-gray-950/95 backdrop-blur-lg border border-blue-500/30 rounded-lg shadow-xl transition-all duration-200 ${
+                          className={`absolute top-full left-0 mt-1 w-56 bg-gray-900/95 backdrop-blur-lg border border-blue-500/30 rounded-lg shadow-xl transition-all duration-200 ${
                             activeDropdown === index
                               ? "opacity-100 visible transform translate-y-0"
                               : "opacity-0 invisible transform -translate-y-2"
@@ -119,7 +119,7 @@ export default function Header() {
                               <a
                                 key={subIndex}
                                 href={subItem.href}
-                                className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-blue-500/10 transition-colors duration-200 text-shadow-[0_0_3px_#FF00D4]"
+                                className="block px-4 py-2 text-gray-300 hover:text-white hover:bg-blue-500/10 transition-colors duration-200"
                               >
                                 {subItem.name}
                               </a>
@@ -130,14 +130,14 @@ export default function Header() {
                     ) : (
                       <a
                         href={item.href}
-                        className="text-gray-300 hover:text-white transition-colors duration-200 text-shadow-[0_0_3px_#FF00D4]"
+                        className="text-gray-300 hover:text-white transition-colors duration-200"
                       >
                         {item.name}
                       </a>
                     )}
                   </div>
                 ))}
-                <a href='/contact-detail' className="bg-gradient-to-r from-blue-600 to-pink-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
+                <a href='/contact-detail' className="bg-gradient-to-r from-blue-500 to-blue-300 text-white px-6 py-2 rounded-lg hover:from-blue-600 hover:to-blue-400 transition-all duration-200 transform hover:scale-105 shadow-[0_0_5px_#00A3E0] hover:shadow-[0_0_8px_#00A3E0]">
                   Get Started
                 </a>
               </div>
@@ -147,7 +147,7 @@ export default function Header() {
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white hover:text-gray-300 transition-colors duration-200 text-shadow-[0_0_3px_#FF00D4]"
+                className="text-white hover:text-gray-300 transition-colors duration-200"
               >
                 {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -157,7 +157,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-gray-950/95 backdrop-blur-lg border-b border-blue-500/30">
+          <div className="lg:hidden bg-gray-900/95 backdrop-blur-lg border-b border-blue-500/30">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigationItems.map((item, index) => (
                 <div key={index}>
@@ -165,7 +165,7 @@ export default function Header() {
                     <div>
                       <button
                         onClick={() => handleDropdownToggle(index)}
-                        className="flex items-center justify-between w-full px-3 py-2 text-gray-300 hover:text-white transition-colors duration-200 text-shadow-[0_0_3px_#FF00D4]"
+                        className="flex items-center justify-between w-full px-3 py-2 text-gray-300 hover:text-white transition-colors duration-200"
                       >
                         <span>{item.name}</span>
                         <ChevronDown
@@ -180,7 +180,7 @@ export default function Header() {
                             <a
                               key={subIndex}
                               href={subItem.href}
-                              className="block px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 text-shadow-[0_0_3px_#FF00D4]"
+                              className="block px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200"
                             >
                               {subItem.name}
                             </a>
@@ -191,14 +191,14 @@ export default function Header() {
                   ) : (
                     <a
                       href={item.href}
-                      className="block px-3 py-2 text-gray-300 hover:text-white transition-colors duration-200 text-shadow-[0_0_3px_#FF00D4]"
+                      className="block px-3 py-2 text-gray-300 hover:text-white transition-colors duration-200"
                     >
                       {item.name}
                     </a>
                   )}
                 </div>
               ))}
-              <a href="/contact-detail" className="w-full text-left bg-gradient-to-r from-blue-600 to-pink-600 text-white px-3 py-2 rounded-lg hover:from-blue-700 hover:to-pink-700 transition-all duration-200 mt-2 shadow-[0_0_5px_#00C4FF] hover:shadow-[0_0_8px_#00C4FF]">
+              <a href="/contact-detail" className="w-full text-left bg-gradient-to-r from-blue-500 to-blue-300 text-white px-3 py-2 rounded-lg hover:from-blue-600 hover:to-blue-400 transition-all duration-200 mt-2 shadow-[0_0_5px_#00A3E0] hover:shadow-[0_0_8px_#00A3E0]">
                 Get Started
               </a>
             </div>

@@ -62,7 +62,7 @@ export default function TestimonialCarousel() {
   );
 
   return (
-    <div className="relative max-w-6xl mx-auto px-4 py-12 text-center bg-[#0a0a0a]">
+    <div className="relative max-w-6xl mx-auto px-4 py-6 text-center">
       <AnimatePresence mode="wait">
         <motion.div
           key={page}
@@ -70,7 +70,7 @@ export default function TestimonialCarousel() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -20, scale: 0.98 }}
           transition={{ duration: 0.6, ease: 'easeInOut' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {visibleTestimonials.map((testimonial, index) => (
             <motion.div
@@ -78,22 +78,20 @@ export default function TestimonialCarousel() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 * index }}
-              className="bg-[#1a1a1a] border border-[#00C4FF]/20 shadow-md rounded-xl p-8 flex flex-col justify-between text-left hover:shadow-[0_0_20px_rgba(0,196,255,0.4)] transition-all"
+              className="bg-white border border-gray-100 shadow-md rounded-xl p-6 flex flex-col justify-between text-left hover:shadow-lg transition-all"
             >
-              <p className="text-sm italic text-gray-300 mb-6 leading-relaxed">
+              <p className="text-sm italic text-gray-600 mb-4 leading-relaxed">
                 “{testimonial.quote}”
               </p>
-              <div className="flex items-center gap-4 mt-auto">
+              <div className="flex items-center gap-3 mt-auto">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[#00C4FF]/50 shadow-[0_0_10px_rgba(0,196,255,0.3)]"
+                  className="w-10 h-10 rounded-full object-cover border-2 border-blue-500"
                 />
                 <div>
-                  <p className="font-semibold text-lg bg-clip-text text-transparent bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] drop-shadow-[0_0_5px_rgba(0,196,255,0.3)]">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-xs text-gray-400">{testimonial.company}</p>
+                  <p className="font-semibold text-[#1a103d] text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-gray-500">{testimonial.company}</p>
                 </div>
               </div>
             </motion.div>
@@ -102,31 +100,29 @@ export default function TestimonialCarousel() {
       </AnimatePresence>
 
       {/* Navigation */}
-      <div className="flex justify-center gap-6 mt-12">
+      <div className="flex justify-center gap-4 mt-10">
         <button
           onClick={prevPage}
-          className="p-3 rounded-full bg-[#1a1a1a] border border-[#00C4FF]/50 hover:bg-gradient-to-r hover:from-[#00C4FF]/20 hover:to-[#FF00D4]/20 shadow-[0_0_10px_rgba(0,196,255,0.2)] transition-all"
+          className="p-2 rounded-full bg-white shadow hover:bg-gray-100"
         >
-          <ChevronLeft className="w-6 h-6 text-[#00C4FF]" />
+          <ChevronLeft className="w-5 h-5 text-black" />
         </button>
         <button
           onClick={nextPage}
-          className="p-3 rounded-full bg-[#1a1a1a] border border-[#00C4FF]/50 hover:bg-gradient-to-r hover:from-[#00C4FF]/20 hover:to-[#FF00D4]/20 shadow-[0_0_10px_rgba(0,196,255,0.2)] transition-all"
+          className="p-2 rounded-full bg-white shadow hover:bg-gray-100"
         >
-          <ChevronRight className="w-6 h-6 text-[#00C4FF]" />
+          <ChevronRight className="w-5 h-5 text-black" />
         </button>
       </div>
 
       {/* Dots */}
-      <div className="mt-8 flex justify-center gap-3">
+      <div className="mt-5 flex justify-center gap-2">
         {Array.from({ length: totalPages }).map((_, i) => (
           <button
             key={i}
             onClick={() => setPage(i)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              page === i
-                ? 'bg-gradient-to-r from-[#00C4FF] to-[#FF00D4] scale-125 shadow-[0_0_8px_rgba(0,196,255,0.5)]'
-                : 'bg-gray-600'
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+              page === i ? 'bg-blue-600 scale-110' : 'bg-gray-300'
             }`}
           />
         ))}
