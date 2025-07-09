@@ -69,7 +69,7 @@ const HeroSlider: React.FC = () => {
   const goToSlide = (index: number) => handleSlideChange(index);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gray-900 font-sans">
+    <section className="relative min-h-screen overflow-hidden bg-gray-900 py-8 font-sans">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-gray-900/50"></div>

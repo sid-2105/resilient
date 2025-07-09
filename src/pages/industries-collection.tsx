@@ -49,7 +49,7 @@ const industries: Industry[] = [
   },
 ];
 
-// Variants for animation
+// Animation Variants
 const cardVariants: Variants = {
   hidden: { opacity: 0, x: 50 },
   visible: (i: number) => ({
@@ -69,12 +69,6 @@ const IndustriesSection: React.FC = () => {
       container.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
     }
   };
-
-  // Split into chunks of 3 cards per slide
-  const chunkedIndustries = [];
-  for (let i = 0; i < industries.length; i += 3) {
-    chunkedIndustries.push(industries.slice(i, i + 3));
-  }
 
   return (
     <section className="relative py-12 sm:py-16 bg-gray-900 font-sans">
@@ -103,53 +97,49 @@ const IndustriesSection: React.FC = () => {
             viewport={{ once: true }}
             className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
-            We empower diverse industries with innovative IT solutions, leveraging AI-driven automation, low-code platforms, and strategic consulting to drive efficiency and transformation.
+            We empower diverse industries with innovative IT solutions, leveraging AI-driven automation, low-code
+            platforms, and strategic consulting to drive efficiency and transformation.
           </motion.p>
         </div>
 
         {/* Carousel */}
         <div className="relative overflow-hidden">
-          {/* Scrollable container */}
           <div
             ref={scrollRef}
-            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden"
+            className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory [-ms-overflow-style:'none'] [scrollbar-width:'none'] [&::-webkit-scrollbar]:hidden px-2"
           >
-            {chunkedIndustries.map((group, groupIndex) => (
-              <div key={groupIndex} className="flex-shrink-0 w-full flex justify-center gap-6 snap-start px-2">
-                {group.map((item, idx) => (
-                  <motion.div
-                    key={item.title}
-                    custom={idx}
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="w-[300px] h-[460px] relative rounded-xl overflow-hidden border border-blue-500/30 shadow-lg group"
+            {industries.map((item, idx) => (
+              <motion.div
+                key={item.title}
+                custom={idx}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="w-[90%] sm:w-[300px] h-[400px] sm:h-[460px] flex-shrink-0 snap-start mx-2 relative rounded-xl overflow-hidden border border-blue-500/30 shadow-lg group"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 z-10 text-white space-y-2">
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <p className="text-sm line-clamp-3">{item.description}</p>
+                  <a
+                    href={item.link}
+                    className="inline-flex items-center mt-2 text-sm font-medium bg-blue-600 rounded-full px-4 py-2 text-white transition hover:bg-blue-700"
                   >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
-                    <div className="absolute bottom-5 left-5 right-5 z-10 text-white space-y-2">
-                      <h3 className="text-lg font-semibold">{item.title}</h3>
-                      <p className="text-sm line-clamp-3">{item.description}</p>
-                      <a
-                        href={item.link}
-                        className="inline-flex items-center mt-2 text-sm font-medium bg-blue-600 rounded-full px-4 py-2 text-white transition hover:bg-blue-700"
-                      >
-                        Read More
-                        <ArrowRight className="ml-2 w-4 h-4" />
-                      </a>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                    Read More
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </a>
+                </div>
+              </motion.div>
             ))}
           </div>
 
-          {/* Buttons */}
+          {/* Scroll Buttons */}
           <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={() => scroll('left')}
